@@ -5,7 +5,7 @@ import StarRating from'./StarRating'
 
 const Testomonial = () => {
   return (
-    <div>
+    <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 pt-20 pb-30 '>
       <Title title="What Our Guests Say " subTitle=" Discover Why discerning travelers consistently choose KashmirStay for their exclusive and luxurious accomdations around Kashmir"/>
       <div className="flex flex-wrap items-center justify-center gap-6 mt-20 mb-10">
                 {testimonials.map((testimonial) => (
