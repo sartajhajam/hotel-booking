@@ -1,13 +1,14 @@
 // Import necessary dependencies
 import React from "react";
-import { facilityIcons, roomsDummyData } from "../assets/assets";
+import { useState } from "react";
+import { facilityIcons, roomsDummyData, assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import StarRating from "../components/StarRating";
-import assets from "../assets/assets";
 
 const AllRooms = () => {
   // Initialize navigation hook
   const navigate = useNavigate();
+  const [openFilters, setOpenFilters] = useState(false);
 
   return (
     <div className="flex flex-col-reverse lg:flex-row items-start justify-between pt-28 mf:pt-35 px-4 md:px-16 lg:px-24 xl:px-32">
@@ -82,7 +83,19 @@ const AllRooms = () => {
       </div>
 
       {/* Filters section */}
-      <div>{/* Filter content will go here */}</div>
+      <div className="bg-white w-80 border border-gray-300 text-gray-600 max-lg:mb-8 min-lg:mt-16">
+        <div className={`flex justify-between items-center px-5 py-2.5 min-lg:border-b border-gray-300 ${openFilters ? "border-b" : ""}`}>
+          <p className="text-base font-medium text-gray-800">FILTERS</p>
+        </div>
+        <div className="text-base font-medium text-gray-800 ">
+          <span onClick={() => setOpenFilters(!openFilters)} className="lg:hidden">
+            {openFilters ? 'HIDE' : 'SHOW ' } </span>
+          <span className="hidden lg:block">CLEAR</span>
+        </div>
+
+
+
+      </div>
     </div>
   );
 };
