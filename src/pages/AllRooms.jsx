@@ -48,9 +48,6 @@ const AllRooms = () => {
     'Newest First',
     'Oldest First',
   ];
-  
-
-
 
 
   return (
@@ -127,37 +124,47 @@ const AllRooms = () => {
 
       {/* Filters section */}
       <div className="bg-white w-80 border border-gray-300 text-gray-600 max-lg:mb-8 min-lg:mt-16">
-        <div className={`flex justify-between items-center px-5 py-2.5 min-lg:border-b border-gray-300 ${openFilters ? "border-b" : ""}`}>
+        <div className="flex justify-between items-center px-5 py-4 border-b border-gray-300">
           <p className="text-base font-medium text-gray-800">FILTERS</p>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setOpenFilters(!openFilters)} 
+              className="lg:hidden text-sm font-medium text-gray-600 hover:text-gray-800"
+            >
+              {openFilters ? 'HIDE' : 'SHOW'}
+            </button>
+            <button 
+              className="hidden lg:block text-sm font-medium text-gray-600 hover:text-gray-800"
+            >
+              CLEAR ALL
+            </button>
+          </div>
         </div>
-        <div className="text-base font-medium text-gray-800 ">
-          <span onClick={() => setOpenFilters(!openFilters)} className="lg:hidden">
-            {openFilters ? 'HIDE' : 'SHOW ' } </span>
-          <span className="hidden lg:block">CLEAR</span>
-        </div>
-      </div>
-      <div className={`${openFilters ? "h-auto" : "h-0 lg:h-auto"} overflow-hidden transition-all duration-700`}>
-        <div className="px-5 pt-5">
-          <p p className="font-medium text-gray-800 pb-2 ">Popular Filters</p>
-          {roomTypes.map((room, index)=>(
-            <CheckBox key={index} label={room} />
-          ))  }
+        <div className={`${openFilters ? "h-auto" : "h-0 lg:h-auto"} overflow-hidden transition-all duration-700`}>
+          <div className="px-5 pt-5">
+            <p p className="font-medium text-gray-800 pb-2 ">Popular Filters</p>
+            {roomTypes.map((room, index)=>(
+              <CheckBox key={index} label={room} />
+            ))  }
+          </div>
+
+          <div className="px-5 pt-5">
+            <p p className="font-medium text-gray-800 pb-2 ">Price Range</p>
+            {priceRange.map((range, index)=>(
+              <CheckBox key={index} label={`$ ${range}`} />
+            ))  }
+          </div>
+
+
+          <div className="px-5 pt-5">
+            <p p className="font-medium text-gray-800 pb-2 ">Sort By </p>
+            {sortOptions.map((option, index)=>(
+              <RadioButton key={index} label={option} />
+            ))  }
+          </div>
+
         </div>
 
-        <div className="px-5 pt-5">
-          <p p className="font-medium text-gray-800 pb-2 ">Price Range</p>
-          {priceRange.map((range, index)=>(
-            <CheckBox key={index} label={`$ ${range}`} />
-          ))  }
-        </div>
-
-
-        <div className="px-5 pt-5">
-          <p p className="font-medium text-gray-800 pb-2 ">Sor tBy </p>
-          {sortOptions.map((option, index)=>(
-            <RadioButton key={index} label={option} />
-          ))  }
-        </div>
 
       </div>
 
@@ -165,5 +172,13 @@ const AllRooms = () => {
     </div>
   );
 };
+
+
+
+
+
+
+
+
 
 export default AllRooms;
