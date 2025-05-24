@@ -1,5 +1,5 @@
 import React, { use } from 'react'
-import { roomsDummyData } from '../assets/assets';
+import { assets, roomsDummyData } from '../assets/assets';
 
 const RoomDetails = () => {
   const {id} = useParams();
@@ -18,10 +18,33 @@ const RoomDetails = () => {
       {/* Room Details */}
       <div className='flex flex-col md:flex-row items-start md:items-center gap-2'>
         <h1 className='text-3xl md:text-4xl font-plafair'>{room.hotel.name} <span className='font-inter text-sm'> {room.roomType}</span></h1>
-        <p>20 % OFF</p>
+        <p className='text-xs font-inter py-1 px-3 text-white bg-orange-500 rounded-full'>20 % OFF</p>
 
       </div>
-      
+
+      {/* Room Rating */} 
+      <div className='flex items-center gap-1 mt-2'>
+        <StarRating/>
+        <p className='ml-2'> 200 + reviews </p>
+      </div>
+
+      {/* Room Address */}
+      <div>
+        <img src={assets.locationIcon} alt="Location Icon" />
+        <span>{room.hotel.address}</span>
+      </div>
+
+      {/* Room Images */}
+      <div className='flex flex-col lg:flex-row gap-6 mt-6'>
+
+        <div className='lg:w1/2 w-full'>
+          <img src={mainImage} alt="Room" className='w-full rounded-xl shadow-lg object-cover' />
+        </div>
+
+
+
+      </div>
+
     </div>
   )
 }
