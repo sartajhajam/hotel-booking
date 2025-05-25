@@ -1,25 +1,37 @@
-import React, { use } from 'react'
-import { assets, facilityIcons, roomsDummyData } from '../assets/assets';
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { assets, facilityIcons, roomsDummyData, roomCommonData } from '../assets/assets';
+import StarRating from '../components/StarRating';
 
 const RoomDetails = () => {
   const {id} = useParams();
-  // Fetch room details using the id from the URL
-  const [room,setRoom] = useState(null);
+  const [room, setRoom] = useState(null);
   const [mainImage, setMainImage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const room = roomsDummyData.find(room => room._id === id) 
-        room && setRoom(room)
-        room && setMainImage(room.images[0]);      
-    }, [])
+    const foundRoom = roomsDummyData.find(room => room._id === id);
+    if (foundRoom) {
+      setRoom(foundRoom);
+      setMainImage(foundRoom.images[0]);
+    }
+    setLoading(false);
+  }, [id]);
 
-  return room &&  (
+  if (loading) {
+    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  }
+
+  if (!room) {
+    return <div className="flex items-center justify-center min-h-screen">Room not found</div>;
+  }
+
+  return (
     <div className='py-28 md:py-35 px-4 md:px-16 lg:px-24 xl:px-32'>
       {/* Room Details */}
       <div className='flex flex-col md:flex-row items-start md:items-center gap-2'>
         <h1 className='text-3xl md:text-4xl font-plafair'>{room.hotel.name} <span className='font-inter text-sm'> {room.roomType}</span></h1>
         <p className='text-xs font-inter py-1 px-3 text-white bg-orange-500 rounded-full'>20 % OFF</p>
-
       </div>
 
       {/* Room Rating */} 
@@ -36,41 +48,40 @@ const RoomDetails = () => {
 
       {/* Room Images */}
       <div className='flex flex-col lg:flex-row gap-6 mt-6'>
-
         <div className='lg:w1/2 w-full'>
-          <img src={mainImage} alt="Room" className='w-full rounded-xl shadow-lg object-cover' />
+          {mainImage && <img src={mainImage} alt="Room" className='w-full rounded-xl shadow-lg object-cover' />}
         </div>
         <div className='grid grid-cols-2 gap-4 lg:w-1/2 w-full'>
-          {room?.images.length > 1 && room.images.map ((image, index) => (
-            <img onClick={() => setMainImage(image)}
-            key={index} src={image} className={`w-full rounded-xl shadow-md cursor-pointer object-cover ${mainImage === image ? 'outline-3 outline-orange-500' : ''}`} />
+          {room.images && room.images.length > 1 && room.images.map((image, index) => (
+            <img 
+              onClick={() => setMainImage(image)}
+              key={index} 
+              src={image} 
+              className={`w-full rounded-xl shadow-md cursor-pointer object-cover ${mainImage === image ? 'outline-3 outline-orange-500' : ''}`} 
+              alt={`Room view ${index + 1}`}
+            />
           ))}
         </div>
-
       </div>
 
-
-      {/* Room Highlghts */}
-      <div className='flex flex-col md:flex-row  md:justify-between mt-10'>
-        <div className='flex flex-col '>
-          <h1 className='text-3xl md:text-4xl font-playfair'>Experience Luxury Like Never Before </h1>
+      {/* Room Highlights */}
+      <div className='flex flex-col md:flex-row md:justify-between mt-10'>
+        <div className='flex flex-col'>
+          <h1 className='text-3xl md:text-4xl font-playfair'>Experience Luxury Like Never Before</h1>
           <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>
-            {room.amenities.map((item, index) => (
-              <div key={index} className='flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 '>
-                <img src={facilityIcons[item]} alt={item} className='w-5 h-5 ' />
+            {room.amenities && room.amenities.length > 0 && room.amenities.map((item, index) => (
+              <div key={index} className='flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100'>
+                <img src={facilityIcons[item]} alt={item} className='w-5 h-5' />
                 <p className='text-xs'>{item}</p>
-                
-             </div>
-              
+              </div>
             ))}
           </div>
         </div>
 
-         {/* Room Price */}
-        <p className='text-2xl font-medium'>${room.pricePerNight}/night        
-        </p>
-
+        {/* Room Price */}
+        <p className='text-2xl font-medium'>${room.pricePerNight || 0}/night</p>
       </div>
+
       {/* Check In Checkout Form */}
       <form className='flex flex-col md:flex-row items-start md:items-center justify-between bg-white shadow-[0px_0px_20px_rgba(0,0,0,0.15)] rounded-xl p-6 mx-auto mt-16 max-w-6xl'>
 
@@ -102,14 +113,14 @@ const RoomDetails = () => {
       
       </form>
 
-      {/* Common Specfication */}
+      {/* Common Specifications */}
       <div className='mt-25 space-y-4'>
-        {room.commonSpecifications.map((spec, index) => (
-          <div key={index} className='flex items-center gap-2 '>
+        {roomCommonData.map((spec, index) => (
+          <div key={index} className='flex items-center gap-2'>
             <img src={spec.icon} alt={`${spec.title}-icon`} className='w-6.5' />
             <div>
-            <p className='text-base '>{spec.title}</p>
-            <p className=' text-gray-500'>{spec.description}</p>
+              <p className='text-base'>{spec.title}</p>
+              <p className='text-gray-500'>{spec.description}</p>
             </div>
           </div>
         ))}
@@ -138,7 +149,7 @@ const RoomDetails = () => {
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default RoomDetails
+export default RoomDetails;

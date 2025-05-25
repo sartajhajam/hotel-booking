@@ -76,7 +76,7 @@ const AllRooms = () => {
               title="View Room Details"
               className="md:w-1/2 rounded-xl shadow-lg object-cover cursor-pointer"
               onClick={() => {
-                navigate(`/room/${room.id}`);
+                navigate(`/rooms/${room._id}`);
                 window.scrollTo(0, 0);
               }}
             />
@@ -86,7 +86,7 @@ const AllRooms = () => {
               <p className="text-gray-500">{room.hotel.city}</p>
               <p
                 onClick={() => {
-                  navigate(`/room/${room.id}`);
+                  navigate(`/rooms/${room._id}`);
                   window.scrollTo(0, 0);
                 }}
                 className="text-gray-800 text-3xl font-playfair cursor-pointer"
