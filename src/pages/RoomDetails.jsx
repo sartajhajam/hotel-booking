@@ -52,7 +52,7 @@ const RoomDetails = () => {
 
       {/* Room Highlghts */}
       <div className='flex flex-col md:flex-row  md:justify-between mt-10'>
-        <div>
+        <div className='flex flex-col '>
           <h1 className='text-3xl md:text-4xl font-playfair'>Experience Luxury Like Never Before </h1>
           <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>
             {room.amenities.map((item, index) => (
@@ -66,7 +66,27 @@ const RoomDetails = () => {
           </div>
         </div>
 
+         {/* Room Price */}
+        <p className='text-2xl font-medium'>${room.pricePerNight}/night        
+        </p>
+
       </div>
+      {/* Check In Checkout Form */}
+      <form className='flex flex-col md:flex-row items-start md:items-center justify-between bg-white shadow-[0px_0px_20px_rgba(0,0,0,0.15)] rounded-xl p-6 mx-auto mt-16 max-w-6xl'>
+
+        <div className='flex flex-col flex-wrap md:flex-row items-start md:items-center gap-4 md:gap-10 text-gray-500'>
+          <div className='flex flex-col '>
+            <label htmlFor='checkInDate' className='font-medium '>Check-In </label>
+            <input type="date" id='checkInDate'placeholder='Check-In'className='w-full rounded border border-gray-300 px-3 py-2 mt-1.5 outline-none required'/>
+          </div>
+
+        </div>
+
+        <button type='submit' className='bg-primary hover:bg-primary-dull active:scale-95 transition-all text-white rounded-md max-md:w-full max-md:mt-6 md:px-24 py-3 md:py-4 text-base cursor-pointer'>
+          Book Now 
+        </button>
+      
+      </form>
 
     </div>
   )
