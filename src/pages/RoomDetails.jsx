@@ -97,10 +97,33 @@ const RoomDetails = () => {
         </div>
 
         <button type='submit' className='bg-primary hover:bg-primary-dull active:scale-95 transition-all text-white rounded-md max-md:w-full max-md:mt-6 md:px-24 py-3 md:py-4 text-base cursor-pointer'>
-          Book Now 
+          Check Availability 
         </button>
       
       </form>
+
+      {/* Common Specfication */}
+      <div className='mt-25 space-y-4'>
+        {room.commonSpecifications.map((spec, index) => (
+          <div key={index} className='flex items-center gap-2 '>
+            <img src={spec.icon} alt={`${spec.title}-icon`} className='w-6.5' />
+            <div>
+            <p className='text-base '>{spec.title}</p>
+            <p className=' text-gray-500'>{spec.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Room Description */}
+      <div className='max-w-3xl border-y border-gray-300 my-15 py-10 text-gray-500'>
+        <p>Guests will be allocated on the ground floor according to availablity.You get a comofortable Two bedroom apartment has a true city feeling.The price qouted is for two guests,at the guest slot please mark the number of guests to get the exact price for groups.The Guests will be allocated ground floor according to availablity.You get the comofortable bedroom apartment that has a true city feeling.</p>
+
+      </div>
+      {/*Hosted By  */}
+
+      <div>
+
+      </div>
 
     </div>
   )
