@@ -18,14 +18,14 @@ const App = () => {
       {!isOwnerPath && <Navbar />}
       
       {/* Conditional rendering of HotelReg component based on a condition  from bakend*/}
-      {false && <HotelReg />}
+      {true && <HotelReg />}
       <div className='min-h-[70vh]'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/rooms' element={<AllRooms />} />
           <Route path='/rooms/:id' element={<RoomDetails />} />
           <Route path='/my-bookings' element={<MyBookings />} />
-          <Route path='/owner/*' element={<Layout />}>
+          <Route path='/owner' element={<Layout />}>
 
           </Route>
 
