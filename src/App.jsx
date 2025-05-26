@@ -18,7 +18,7 @@ const App = () => {
       {!isOwnerPath && <Navbar />}
       
       {/* Conditional rendering of HotelReg component based on a condition  from bakend*/}
-      {true && <HotelReg />}
+      {false && <HotelReg />}
       <div className='min-h-[70vh]'>
         <Routes>
           <Route path='/' element={<Home />} />
