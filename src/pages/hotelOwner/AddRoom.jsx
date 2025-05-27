@@ -35,11 +35,16 @@ const AddRoom = () => {
             <img className='max-h-13 cursor-pointer opacity-80'
             src={images[key] ? URL.createObjectURL(images[key]):assets.uploadArea} alt="" />
             <input type="file" accept='image/*' id={`roomImages-${key}`} className='hidden' onChange={(e) => setImages({...images, [key]: e.target.files[0]})} />
-            
-
           </label>
         ))}
       </div>
+
+
+      <div>
+        
+      </div>
+
+
     </form>
   )
 }
