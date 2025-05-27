@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
+import Title from '../../components/Title'
 
 const AddRoom = () => {
 
@@ -15,10 +16,10 @@ const AddRoom = () => {
     roomType: '',
     pricePerNight: 0,
     amenities: {
-      'Free Wifi' :false, 
-      'Free Breakfast': false, 
-      'Room Service ': false, 
-      'Mountain View': false},
+      'Free Wifi': false,
+      'Free Breakfast': false,
+      'Room Service': false,
+      'Mountain View': false,
       'Pool Access': false
     }
   })
@@ -68,7 +69,7 @@ const AddRoom = () => {
 
       <p className='text-gray-800 mt-4 '>Amenities</p>
       <div>
-        
+
       </div>
 
 
