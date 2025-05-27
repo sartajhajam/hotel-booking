@@ -55,8 +55,7 @@ const HotelReg = () => {
 
 
 
-        </div>
-
+        </div>00
 
       </form>
     </div>
