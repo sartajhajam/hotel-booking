@@ -1,12 +1,66 @@
-# React + Vite
+# 🏨 Hotel Booking Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack **Hotel Booking Platform** built using the MERN (MongoDB, Express, React, Node.js) stack.
 
-Currently, two official plugins are available:
+This application lets users browse and book hotel rooms, hotel owners manage their listings, and admins oversee the system — all in one powerful, responsive platform.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📸 Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![App Screenshot](https://your-screenshot-link.com/demo.png)
+
+---
+
+## 🌟 Features
+
+- User Authentication using Clerk 
+- Browse & Search Hotels
+- Hotel Room Booking with Date & Availability Checks
+- Hotel Owner Dashboard
+- User Dashboard (Bookings, Profile)
+- Admin Panel (Manage Users, Hotels, Bookings)
+- Reviews & Ratings System
+- Stripe Payment Integration
+- Mobile-Responsive Design
+
+---
+
+## 🛠 Tech Stack
+
+**Client:** React, Redux / Context API, Tailwind CSS / Bootstrap  
+**Server:** Node.js, Express.js, MongoDB, Mongoose  
+**Authentication:** JWT, bcrypt  
+**Payments:** Stripe / Razorpay  
+**Deployment:** Vercel (frontend), Render / Railway / Heroku (backend), MongoDB Atlas
+
+---
+
+## 🏗️ Environment Variables
+
+To run this project, set the following environment variables.
+
+### Server `.env`
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_secret
+
+
+### Client `.env`
+
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
+
+
+---
+
+## 💻 Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/hotel-booking-platform.git
+cd hotel-booking-platform
+
+
