@@ -1,8 +1,7 @@
 # 🏨 Hotel Booking Platform
 
-A full-stack **Hotel Booking Platform** built using the MERN (MongoDB, Express, React, Node.js) stack.
-
-This application lets users browse and book hotel rooms, hotel owners manage their listings, and admins oversee the system — all in one powerful, responsive platform.
+A full-stack **Hotel Booking Platform** built with the MERN (MongoDB, Express, React, Node.js) stack.  
+It allows users to search and book hotels, hotel owners to manage listings, and admins to oversee the system.
 
 ---
 
@@ -14,54 +13,33 @@ This application lets users browse and book hotel rooms, hotel owners manage the
 
 ## 🌟 Features
 
-- User Authentication using Clerk 
-- Browse & Search Hotels
-- Hotel Room Booking with Date & Availability Checks
-- Hotel Owner Dashboard
+- User Authentication (Clerk)
+- Search & Filter Hotels
+- Room Booking with Date & Availability Check
 - User Dashboard (Bookings, Profile)
-- Admin Panel (Manage Users, Hotels, Bookings)
-- Reviews & Ratings System
-- Stripe Payment Integration
-- Mobile-Responsive Design
+- Hotel Owner Dashboard (Manage Listings)
+- Admin Panel (Users, Hotels, Bookings)
+- Reviews & Ratings
+- Stripe  Payment Integration
+- Responsive, Mobile-Friendly UI
 
 ---
 
 ## 🛠 Tech Stack
 
-**Client:** React, Redux / Context API, Tailwind CSS 
-**Server:** Node.js, Express.js, MongoDB, Mongoose  
-**Authentication:** Clerk
-**Payments:** Stripe 
-**Deployment:** Vercel (frontend), Render / Railway / Heroku (backend), MongoDB Atlas
-
----
-
-## 🏗️ Environment Variables
-
-To run this project, set the following environment variables.
-
-### Server `.env`
-PORT=5000
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-STRIPE_SECRET_KEY=your_stripe_secret
-
-
-### Client `.env`
-
-REACT_APP_API_URL=http://localhost:5000
-
-REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
-
+- **Frontend:** React, Redux / Context API, Tailwind CSS 
+- **Backend:** Node.js, Express.js, MongoDB, Mongoose
+- **Auth:** Clerk
+- **Payments:** Stripe 
+- **Deployment:** Vercel (frontend), Render / Railway / Heroku (backend), MongoDB Atlas
 
 ---
 
 ## 💻 Installation
 
-### Clone the repository
+1️⃣ **Clone the Repository**
 
 ```bash
-git https://github.com/sartajhajam/hotel-booking
-cd hotel-booking-platform
-
+git clone https://github.com/sartajhajam/hotel-booking.git
+cd hotel-booking
 
