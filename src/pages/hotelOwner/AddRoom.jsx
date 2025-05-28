@@ -56,10 +56,19 @@ const AddRoom = () => {
         </div>
         <div>
           <p className='mt-4 text-gray-800'>
-            Price <span className='text-xs'>/night </span>
+            Price <span className='text-xs text-gray-500'> /night </span>
           </p>
 
-          <input type='number' placeholder='0' className='border border-b-300 mt-1 rounded p-2 w-24 'value={inputs.pricePerNight} onChange={e=> setInputs({...inputs,pricePerNight:e.target.value})} />
+          <div className='relative mt-1'>
+            <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-500'>$</span>
+            <input 
+              type='number' 
+              placeholder='0' 
+              className='border border-gray-300 rounded p-2 pl-7 w-32 focus:outline-none focus:border-primary transition-colors' 
+              value={inputs.pricePerNight} 
+              onChange={e=> setInputs({...inputs,pricePerNight:e.target.value})} 
+            />
+          </div>
           
           </div>
 
@@ -85,12 +94,11 @@ const AddRoom = () => {
           
         ))}
       </div>
-      <button className='bg-primary text-white px-8 py-2 rounded mt-8 cursor'>
+      <button className='bg-primary text-white px-8 py-2 rounded mt-8 cursor-pointer'>
         Add Room 
       </button>
-
-
     </form>
+    
   )
 }
 
