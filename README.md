@@ -28,10 +28,10 @@ This application lets users browse and book hotel rooms, hotel owners manage the
 
 ## 🛠 Tech Stack
 
-**Client:** React, Redux / Context API, Tailwind CSS / Bootstrap  
+**Client:** React, Redux / Context API, Tailwind CSS 
 **Server:** Node.js, Express.js, MongoDB, Mongoose  
-**Authentication:** JWT, bcrypt  
-**Payments:** Stripe / Razorpay  
+**Authentication:** Clerk
+**Payments:** Stripe 
 **Deployment:** Vercel (frontend), Render / Railway / Heroku (backend), MongoDB Atlas
 
 ---
@@ -50,6 +50,7 @@ STRIPE_SECRET_KEY=your_stripe_secret
 ### Client `.env`
 
 REACT_APP_API_URL=http://localhost:5000
+
 REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
 
 
@@ -60,7 +61,7 @@ REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
 ### Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/hotel-booking-platform.git
+git https://github.com/sartajhajam/hotel-booking
 cd hotel-booking-platform
 
 
