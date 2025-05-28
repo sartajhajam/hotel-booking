@@ -28,9 +28,17 @@ const ListRoom = () => {
                   <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>
                     {item.roomType}
                   </td>
-                  <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>
-                    {item.roomType}
+                  <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden'>
+                    {item.amenities.join(', ')}
                   </td>
+                  <td className='py-3 px-4 text-gray-700 border-t border-gray-300 '>
+                    {item.pricePerNight}
+                  </td>
+
+                  <td className='py-3 px-4  border-t border-gray-300 text-sm text-shadow-red-500 '>
+                    <label htmlFor={`editRoom-${index}`} className='cursor-pointer text-blue-500 hover:underline'>Edit</label>
+                  </td>
+
                 </tr>              
               )
             }
