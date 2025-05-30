@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import { clerkMiddleware } from '@clerk/express'
 import clerkWebHooks from './controllers/clerkWebhooks.js';
+import userRouter from './routes/userRoutes.js';
 
 // calling the connectDB function to establish a connection to the database
 connectDB();
@@ -17,6 +18,7 @@ app.use(clerkMiddleware());
 
 //API to listen clerk webhooks
 app.use("/api/clerk",clerkWebHooks);
+app.use('/api/user',userRouter); // user routes
 
 // to parse JSON bodies
 app.use(express.json()); // 
