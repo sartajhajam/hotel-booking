@@ -1,0 +1,12 @@
+{
+  "name": "hotel-booking",
+  "version": "1.0.0",
+  "description": "A full-stack **Hotel Booking Platform** built with the MERN (MongoDB, Express, React, Node.js) stack.   It allows users to search and book hotels, hotel owners to manage listings, and admins to oversee the system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

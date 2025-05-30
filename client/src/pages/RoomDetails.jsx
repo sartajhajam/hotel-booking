@@ -47,17 +47,17 @@ const RoomDetails = () => {
       </div>
 
       {/* Room Images */}
-      <div className='flex flex-col lg:flex-row gap-6 mt-6'>
-        <div className='lg:w1/2 w-full'>
-          {mainImage && <img src={mainImage} alt="Room" className='w-full rounded-xl shadow-lg object-cover' />}
+      <div className='flex flex-col lg:flex-row gap-4 mt-6'>
+        <div className='lg:w-2/3 w-full'>
+          {mainImage && <img src={mainImage} alt="Room" className='w-full h-[400px] rounded-xl shadow-lg object-cover' />}
         </div>
-        <div className='grid grid-cols-2 gap-4 lg:w-1/2 w-full'>
+        <div className='grid grid-cols-2 gap-2 lg:w-1/3 w-full'>
           {room.images && room.images.length > 1 && room.images.map((image, index) => (
             <img 
               onClick={() => setMainImage(image)}
               key={index} 
               src={image} 
-              className={`w-full rounded-xl shadow-md cursor-pointer object-cover ${mainImage === image ? 'outline-3 outline-orange-500' : ''}`} 
+              className={`w-full h-[190px] rounded-xl shadow-md cursor-pointer object-cover ${mainImage === image ? 'ring-2 ring-orange-500' : ''}`} 
               alt={`Room view ${index + 1}`}
             />
           ))}
