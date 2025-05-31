@@ -7,10 +7,11 @@ import clerkWebHooks from './controllers/clerkWebhooks.js';
 import userRouter from './routes/userRoutes.js';
 import hotelRouter from './routes/hotelRoute.js';
 import connectCloudinary from './config/cloudinary.js';
+import roomRouter from './routes/roomRoutes.js';
 
 // calling the connectDB function to establish a connection to the database
 connectDB();
-connectCloudinary
+connectCloudinary();
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(clerkMiddleware());
 app.use("/api/clerk",clerkWebHooks);
 app.use('/api/user',userRouter); // user routes
 app.use('/api/hotels',hotelRouter); // hotel routes
+app.use('/api/rooms',roomRouter); // room router
 // to parse JSON bodies
 app.use(express.json()); // 
 
