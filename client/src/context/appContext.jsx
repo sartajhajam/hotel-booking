@@ -5,8 +5,6 @@ axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const AppContext = createContext();
 
- const useAppContext = () => createContext();
-
 export const AppProvider = ({ children }) => {
     const value = {
 
