@@ -1,9 +1,58 @@
-import React, { useState } from 'react'
-import { roomsDummyData } from "../../assets/assets";
+import React, { useEffect, useState } from 'react'
+
 import Title from "../../components/Title";
+import { useAppContext } from '../../context/appContext';
+import toast from 'react-hot-toast';
+import { toggleRoomAvailability } from '../../../../server/controllers/roomController';
 
 const ListRoom = () => {
-  const [rooms, setRooms] = useState(roomsDummyData);
+  const [rooms, setRooms] = useState([]);
+
+  const {axios,getToken,user} = useAppContext;
+
+  // fetch rooms of the hotel owner 
+
+  const fetchRooms = async ()=>{
+    try {
+      const {data} = await axios.get(' /api/rooms/owner',{ headers: { Authorization: `Bearer ${await getToken()}` } })
+
+      if (data.success){
+        setRooms(data.rooms)
+      }else{
+        toast.error(data.message)
+      }
+      
+    } catch (error) {
+      toast.error(data.message)      
+    }
+  }
+
+  //Toggle Avalaiblty of the room 
+
+  const toggleAvailability = async (roomId)=>{
+    const {data}= await axios.post('/api/rooms/toggle-availability',{roomId},
+      { headers: { Authorization: `Bearer ${await getToken()}` } })
+      if (data.success){
+        toast.success(data.message)
+        fetchRooms()
+        
+      }else{
+        toast.error(data.message)
+
+
+      }
+    )
+  }
+
+  useEffect(()=>{
+    if(user){
+      fetchRooms()
+    }
+  },[user])
+
+
+
+
 
   const handleAvailabilityToggle = (index) => {
     setRooms(prevRooms => {
@@ -60,7 +109,7 @@ const ListRoom = () => {
                       type="checkbox"
                       className="sr-only peer"
                       checked={item.isAvailable}
-                      onChange={() => handleAvailabilityToggle(index)}
+                      onChange={() => toggleAvailability(item._id)}
                     />
                     <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300 ease-in-out"></div>
                     <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow-sm transition-all duration-300 ease-in-out peer-checked:translate-x-5"></span>
