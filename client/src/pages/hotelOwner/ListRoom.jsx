@@ -8,7 +8,7 @@ import { toggleRoomAvailability } from '../../../../server/controllers/roomContr
 const ListRoom = () => {
   const [rooms, setRooms] = useState([]);
 
-  const {axios,getToken,user} = useAppContext;
+  const {axios,getToken,user,currency} = useAppContext;
 
   // fetch rooms of the hotel owner 
 
@@ -101,7 +101,7 @@ const ListRoom = () => {
                   {item.amenities.join(", ")}
                 </td>
                 <td className="py-3 px-4 text-gray-700 border-t border-gray-300 text-center">
-                  ${item.pricePerNight}
+                  {currency}{item.pricePerNight}
                 </td>
                 <td className="py-3 px-4 border-t border-gray-300 text-center">
                   <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
