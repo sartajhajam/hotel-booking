@@ -1,5 +1,5 @@
 // Import necessary dependencies
-import React from "react";
+import React, { useMemo } from "react";
 import { useState } from "react";
 import { facilityIcons, roomsDummyData, assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
@@ -95,7 +95,35 @@ const AllRooms = () => {
   }
 
   // function to sort rooms based on the selected sort options 
-  
+  const sortRooms = (a , b) =>{
+    if (selectedSort === 'Price Low to High'){
+      return a.pricePerNight -b.pricePerNight;
+    }
+    if(selectedSort === 'Price High to Low'){
+      return b.pricePerNight - a.pricePerNight;
+    }
+    if(selectedSort === 'Newest First'){
+      return new DataTransfer(b.createdAt) - new Date(a.createdAt)
+    }
+    return 0;
+  }
+
+  // function to filter destination
+  const filterDestination = (room) => {
+    const destination = searchParams.get('destination');
+    if(!destination)return true;
+    return room.hotel.city.toLowerCase().includes(destination.toLowerCase())
+  }
+
+  // Filter and sort rooms based on the selected filters and sort option
+
+  const filteredRooms = useMemo(()=>{
+    return rooms.filter(room => matchesRoomType(room) matchesPriceRange(room))
+
+
+  })
+
+
 
   return (
     <div className="flex flex-col-reverse lg:flex-row items-start justify-between pt-28 mf:pt-35 px-4 md:px-16 lg:px-24 xl:px-32">
