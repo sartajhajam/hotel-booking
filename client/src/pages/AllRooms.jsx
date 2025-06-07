@@ -4,6 +4,7 @@ import { useState } from "react";
 import { facilityIcons, roomsDummyData, assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import StarRating from "../components/StarRating";
+import { useAppContext } from "../context/appContext";
 
 const CheckBox =({label, selected = false ,  onChange =()=>{}})=>{
   return(
@@ -24,9 +25,19 @@ const RadioButton  =({label, selected = false ,  onChange =()=>{}})=>{
 }
 
 const AllRooms = () => {
+
   // Initialize navigation hook
-  const navigate = useNavigate();
+  const [searchParams,setSearchParams] = useSearchParams()
+  const {rooms,navigate, currency} = useAppContext();
   const [openFilters, setOpenFilters] = useState(false);
+
+  const [selectedFilters, setSelectedFilters] = useState({
+    roomType:[],
+    priceRange:[],
+    
+  });
+
+  const [selectedSort, setSelectedSort ] = useState('')
 
   const roomTypes = [
     "Single Room",
@@ -49,6 +60,42 @@ const AllRooms = () => {
     'Oldest First',
   ];
 
+  // Handle changes for filters annd sorting
+  const handleFilterChange = (checked, value,type ) =>{
+    setSelectedFilters((prevFilters)=>{
+      const updatedFilters = {...prevFilters}
+      if(checked){
+        updatedFilters[type].push(value);
+      }else {
+        updatedFilters[type] = updatedFilters[type].filter(item => item !== value);
+      }
+      return updatedFilters;
+
+    })
+
+  }
+
+  const handleSortChange = (sortOption)=>{
+    setSelectedSort(sortOption);
+  }
+
+  // function to check if a room matches the selected room types 
+
+  const matchesRoomType = (room)=>{
+    return selectedFilters.roomType.length === 0 || selectedFilters.roomType.includes(roomTypes);
+
+  }
+
+  //function to check if a room matches the selected price ranges 
+  const matchesPriceRange = (room)=>{
+    return selectedFilters.priceRange.length === 0 || selectedFilters.priceRange.some(range =>{
+      const [min, max ] = range.split(' to ').map(Number);
+      return room.pricePerNight >= min && room.pricePerNight <= max;
+    })
+  }
+
+  // function to sort rooms based on the selected sort options 
+  
 
   return (
     <div className="flex flex-col-reverse lg:flex-row items-start justify-between pt-28 mf:pt-35 px-4 md:px-16 lg:px-24 xl:px-32">
