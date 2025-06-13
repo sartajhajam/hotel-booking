@@ -118,10 +118,21 @@ const AllRooms = () => {
   // Filter and sort rooms based on the selected filters and sort option
 
   const filteredRooms = useMemo(()=>{
-    return rooms.filter(room => matchesRoomType(room) matchesPriceRange(room))
+    return rooms.filter(room => matchesRoomType(room)&& matchesPriceRange(room)) && filterDestination(room)).sort(sortRooms);
+  }[rooms,selectedFilters,selectedSort,searchParams]
 
 
   })
+
+  // Clear All Filters 
+  const clearFilters = () => {
+    setSelectedFilters({
+      roomType:[],
+      priceRange:[],
+    });
+    setSelectedSort('');
+    setSelectedParams({});
+  }
 
 
 
@@ -139,7 +150,7 @@ const AllRooms = () => {
         </div>
 
         {/* Room cards section */}
-        {roomsDummyData.map((room) => (
+        {filteredRooms.map((room) => (
           <div
             key={room.id}
             className="flex flex-col md:flex-row  items-start py-10 gap-6 border-b border-gray-300 last:pb-30 last:border-0"
@@ -219,14 +230,14 @@ const AllRooms = () => {
           <div className="px-5 pt-5">
             <p p className="font-medium text-gray-800 pb-2 ">Popular Filters</p>
             {roomTypes.map((room, index)=>(
-              <CheckBox key={index} label={room} />
+              <CheckBox key={index} label={room} selected={selectedFilters.roomType.includes(room)} onChange={()=> handleFilterChange (checked,room,'roomType')} />
             ))  }
           </div>
 
           <div className="px-5 pt-5">
             <p p className="font-medium text-gray-800 pb-2 ">Price Range</p>
             {priceRange.map((range, index)=>(
-              <CheckBox key={index} label={`$ ${range}`} />
+              <CheckBox key={index} label={`$$(currency) ${range}`} selected={selectedFilters.priceRange.includes(range)} onChange={()=> handleFilterChange (checked,range,'priceRange')}/>
             ))  }
           </div>
 
@@ -234,7 +245,7 @@ const AllRooms = () => {
           <div className="px-5 pt-5">
             <p p className="font-medium text-gray-800 pb-2 ">Sort By </p>
             {sortOptions.map((option, index)=>(
-              <RadioButton key={index} label={option} />
+              <RadioButton key={index} label={option} selected={selectedSort === option} onChange={()=> handleSortChange(option)}/>
             ))  }
           </div>
 
